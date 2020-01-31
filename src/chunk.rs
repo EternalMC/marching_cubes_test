@@ -11,7 +11,7 @@ const SCALE: f32 = 2.1;
 
 impl Source for noise {
     fn sample(&self, x: f32, y: f32, z: f32) -> f32 {
-        let result = mandelbox::de(x * SCALE, y * SCALE, z * SCALE);
+        let result = noise::de(x * SCALE, y * SCALE, z * SCALE);
         if result.is_nan() {
             println!("NaN at: {} {} {}", x, y, z);
             0.0
