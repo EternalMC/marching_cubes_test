@@ -7,7 +7,7 @@ extern crate glium;
 
 mod chunk;
 mod keyboard;
-mod mandelbox;
+mod noise;
 mod number;
 mod render;
 
