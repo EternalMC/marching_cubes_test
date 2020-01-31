@@ -1,6 +1,6 @@
 use cgmath;
 use cgmath::{Matrix4, Point3, vec3};
-use chunk::gen_mbox;
+use chunk::gen_noise;
 use glium::draw_parameters::{BackfaceCullingMode, PolygonMode};
 use glium::glutin::{Api, ContextBuilder, ControlFlow, ElementState, Event, EventsLoop, GlProfile,
                     GlRequest, KeyboardInput, VirtualKeyCode, WindowBuilder, WindowEvent};
@@ -42,7 +42,7 @@ struct FlingWindow {
 
 impl FlingWindow {
     fn new() -> (FlingWindow, EventsLoop) {
-        let generated = gen_mbox();
+        let generated = gen_noise();
 
         let events_loop = EventsLoop::new();
         let window = WindowBuilder::new()
