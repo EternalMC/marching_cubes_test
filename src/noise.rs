@@ -6,7 +6,7 @@ pub struct Cfg {
     amplitude: f32,
     smoothness: f32,
     heightOffset: f32,
-    scale: f32,
+    roughness: f32,
     max_iters: u32,
 }
 
@@ -20,8 +20,8 @@ fn spherefold(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
 }
 
 fn scale(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
-    let scale = cfg.scale;
-    (z * scale, dz * scale.abs())
+    let scale = cfg.roughness;
+    (z * roughness, dz * roughness.abs())
 }
 
 fn offset(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f32) {
@@ -56,7 +56,7 @@ pub fn de(x: f32, y: f32, z: f32) -> f32 {
             amplitude: 0.125,
             smoothness: 1.0,
             heightOffset: (1 << 10) as f32,
-            scale: -2.0,
+            roughness: -2.0,
             max_iters: 1 << 8,
         },
         Vector3::new(x, y, z),
