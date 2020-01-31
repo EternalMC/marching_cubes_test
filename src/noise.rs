@@ -5,7 +5,7 @@ pub struct Cfg {
     octaves: f32,
     amplitude: f32,
     smoothness: f32,
-    bailout: f32,
+    heightOffset: f32,
     scale: f32,
     max_iters: u32,
 }
@@ -40,7 +40,7 @@ pub fn noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
     let mut z = offset;
     let mut dz = 1.0;
     let mut n = cfg.max_iters.max(1);
-    while z.len2() < cfg.bailout && n > 0 {
+    while z.len2() < cfg.heightOffset && n > 0 {
         let (new_z, new_dz) = noise_one(cfg, z, dz, offset);
         z = new_z;
         dz = new_dz;
@@ -55,7 +55,7 @@ pub fn de(x: f32, y: f32, z: f32) -> f32 {
             octaves: 1.0,
             amplitude: 0.125,
             smoothness: 1.0,
-            bailout: (1 << 10) as f32,
+            heightOffset: (1 << 10) as f32,
             scale: -2.0,
             max_iters: 1 << 8,
         },
