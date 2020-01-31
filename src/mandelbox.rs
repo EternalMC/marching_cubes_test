@@ -2,7 +2,7 @@ use number::Vector3;
 use number::clamp;
 
 pub struct Cfg {
-    folding_limit: f32,
+    octaves: f32,
     min_radius_2: f32,
     fixed_radius_2: f32,
     bailout: f32,
@@ -11,7 +11,7 @@ pub struct Cfg {
 }
 
 fn boxfold(cfg: &Cfg, z: Vector3<f32>) -> Vector3<f32> {
-    z.clamp(-cfg.folding_limit, cfg.folding_limit) * 2.0 - z
+    z.clamp(-cfg.octaves, cfg.octaves) * 2.0 - z
 }
 
 fn spherefold(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
@@ -52,7 +52,7 @@ pub fn mandelbox(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
     mandelbox(
         &Cfg {
-            folding_limit: 1.0,
+            octaves: 1.0,
             min_radius_2: 0.125,
             fixed_radius_2: 1.0,
             bailout: (1 << 10) as f32,
