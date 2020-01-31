@@ -21,7 +21,7 @@ fn spherefold(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
 
 fn scale(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
     let scale = cfg.roughness;
-    (z * roughness, dz * roughness.abs())
+    (z * scale, dz * scale.abs())
 }
 
 fn offset(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f32) {
