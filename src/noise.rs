@@ -28,7 +28,7 @@ fn offset(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f32)
     (z + offset, dz + 1.0)
 }
 
-fn mandelbox_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>) -> (Vector3<f32>, f32) {
+fn noise_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>) -> (Vector3<f32>, f32) {
     let z = boxfold(cfg, z);
     let (z, dz) = spherefold(cfg, z, dz);
     let (z, dz) = scale(cfg, z, dz);
@@ -36,12 +36,12 @@ fn mandelbox_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>
     (z, dz)
 }
 
-pub fn mandelbox(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
+pub fn noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
     let mut z = offset;
     let mut dz = 1.0;
     let mut n = cfg.max_iters.max(1);
     while z.len2() < cfg.bailout && n > 0 {
-        let (new_z, new_dz) = mandelbox_one(cfg, z, dz, offset);
+        let (new_z, new_dz) = noise_one(cfg, z, dz, offset);
         z = new_z;
         dz = new_dz;
         n -= 1;
@@ -50,7 +50,7 @@ pub fn mandelbox(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 }
 
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
-    mandelbox(
+    noise(
         &Cfg {
             octaves: 1.0,
             min_radius_2: 0.125,
