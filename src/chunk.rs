@@ -1,7 +1,7 @@
 use isosurface::linear_hashed_marching_cubes::LinearHashedMarchingCubes;
 use isosurface::source::CentralDifference;
 use isosurface::source::Source;
-use noise;
+use Noise;
 
 struct noise {}
 
