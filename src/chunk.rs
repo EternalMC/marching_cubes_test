@@ -1,9 +1,9 @@
 use isosurface::linear_hashed_marching_cubes::LinearHashedMarchingCubes;
 use isosurface::source::CentralDifference;
 use isosurface::source::Source;
-use Noise;
+use noise;
 
-struct noise {}
+struct Noise {}
 
 const LOD: usize = 6;
 const DELTA: f32 = 0.005;
