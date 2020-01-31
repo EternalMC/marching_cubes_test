@@ -36,7 +36,7 @@ fn noise_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>) ->
     (z, dz)
 }
 
-pub fn Noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
+pub fn noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
     let mut z = offset;
     let mut dz = 1.0;
     let mut n = cfg.max_iters.max(1);
@@ -50,7 +50,7 @@ pub fn Noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 }
 
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
-    Noise(
+    noise(
         &Cfg {
             octaves: 1.0,
             min_radius_2: 0.125,
