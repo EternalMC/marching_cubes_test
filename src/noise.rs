@@ -3,7 +3,7 @@ use number::clamp;
 
 pub struct Cfg {
     octaves: f32,
-    min_radius_2: f32,
+    amplitude: f32,
     fixed_radius_2: f32,
     bailout: f32,
     scale: f32,
@@ -15,7 +15,7 @@ fn boxfold(cfg: &Cfg, z: Vector3<f32>) -> Vector3<f32> {
 }
 
 fn spherefold(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
-    let factor = cfg.fixed_radius_2 / clamp(z.len2(), cfg.min_radius_2, cfg.fixed_radius_2);
+    let factor = cfg.fixed_radius_2 / clamp(z.len2(), cfg.amplitude, cfg.fixed_radius_2);
     (z * factor, dz * factor)
 }
 
@@ -53,7 +53,7 @@ pub fn de(x: f32, y: f32, z: f32) -> f32 {
     noise(
         &Cfg {
             octaves: 1.0,
-            min_radius_2: 0.125,
+            amplitude: 0.125,
             fixed_radius_2: 1.0,
             bailout: (1 << 10) as f32,
             scale: -2.0,
