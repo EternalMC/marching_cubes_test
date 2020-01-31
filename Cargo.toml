@@ -1,0 +1,10 @@
+[package]
+name = "marching_cubes"
+version = "0.1.0"
+authors = ["EternalMC <jamesdrothermel@gmail.com>, khyperia <khyperia@live.com>"]
+
+[dependencies]
+cgmath = "0.17.0"
+glium = "0.25.1"
+isosurface = "0.0.4"
+png = "0.15.3"
