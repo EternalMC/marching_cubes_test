@@ -52,11 +52,11 @@ pub fn noise(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
     noise(
         &Cfg {
-            octaves: 1.0,
-            amplitude: 0.125,
+            octaves: 7.0,
+            amplitude: 70.125,
             smoothness: 1.0,
             heightOffset: (1 << 10) as f32,
-            roughness: -2.0,
+            roughness: -0.53,
             max_iters: 1 << 8,
         },
         Vector3::new(x, y, z),
