@@ -50,7 +50,7 @@ pub fn noiseFinal(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 }
 
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
-    noise(
+    noiseFinal(
         &Cfg {
             octaves: 7.0,
             amplitude: 70.125,
