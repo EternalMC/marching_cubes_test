@@ -29,8 +29,8 @@ fn getHeight(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f
 }
 
 fn noise_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>) -> (Vector3<f32>, f32) {
-    let z = boxfold(cfg, z);
-    let (z, dz) = spherefold(cfg, z, dz);
+    let z = getNoise(cfg, z);
+    let (z, dz) = lerp(cfg, z, dz);
     let (z, dz) = noise(cfg, z, dz);
     let (z, dz) = offset(z, dz, offset_value);
     (z, dz)
