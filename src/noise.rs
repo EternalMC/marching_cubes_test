@@ -24,7 +24,7 @@ fn noise(cfg: &Cfg, z: Vector3<f32>, dz: f32) -> (Vector3<f32>, f32) {
     (z * scale, dz * scale.abs())
 }
 
-fn getHeight(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f32) {
+fn get_Height(z: Vector3<f32>, dz: f32, offset: Vector3<f32>) -> (Vector3<f32>, f32) {
     (z + offset, dz + 1.0)
 }
 
@@ -32,11 +32,11 @@ fn noise_one(cfg: &Cfg, z: Vector3<f32>, dz: f32, offset_value: Vector3<f32>) ->
     let z = getNoise(cfg, z);
     let (z, dz) = lerp(cfg, z, dz);
     let (z, dz) = noise(cfg, z, dz);
-    let (z, dz) = getHeight(z, dz, offset_value);
+    let (z, dz) = get_Height(z, dz, offset_value);
     (z, dz)
 }
 
-pub fn noiseFinal(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
+pub fn noise_Final(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
     let mut z = offset;
     let mut dz = 1.0;
     let mut n = cfg.max_iters.max(1);
@@ -50,7 +50,7 @@ pub fn noiseFinal(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 }
 
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
-    noiseFinal(
+    noise_Final(
         &Cfg {
             octaves: 7.0,
             amplitude: 70.125,
