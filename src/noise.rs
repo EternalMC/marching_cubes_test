@@ -2,6 +2,8 @@ use number::Vector3;
 use number::clamp;
 
 pub struct Cfg {
+    seed: i32,
+    
     octaves: f32,
     amplitude: f32,
     smoothness: f32,
@@ -52,6 +54,8 @@ pub fn noise_final(cfg: &Cfg, offset: Vector3<f32>) -> f32 {
 pub fn de(x: f32, y: f32, z: f32) -> f32 {
     noise_final(
         &Cfg {
+            seed: 10,
+            
             octaves: 7.0,
             amplitude: 70.125,
             smoothness: 1.0,
